@@ -24,6 +24,7 @@ public class ProductsRepositoryTest {
     );
     final Product EXPECTED_FIND_BY_ID_PRODUCT = new Product(2L, "prod2", 222.0);
     final Product EXPECTED_SAVED_PRODUCT = new Product(10L, "saved prod", 999.0);
+    final Product EXPECTED_UPDATED_PRODUCT = new Product(3L, "updated prod", 888.0);
 
     private DataSource ds;
     ProductsRepository repository;
@@ -51,12 +52,22 @@ public class ProductsRepositoryTest {
         Assertions.assertEquals(Optional.of(EXPECTED_FIND_BY_ID_PRODUCT), repository.findById(2L));
     }
 
-    //    --------------
-    //    DOES NOT WORK
     @Test
     void saveCheck() throws SQLException {
         repository.save(EXPECTED_SAVED_PRODUCT);
         Assertions.assertEquals(EXPECTED_SAVED_PRODUCT, repository.findById(10L).get());
+    }
+
+    @Test
+    void updateCheck() throws SQLException {
+        repository.update(EXPECTED_UPDATED_PRODUCT);
+        Assertions.assertEquals(EXPECTED_UPDATED_PRODUCT, repository.findById(EXPECTED_UPDATED_PRODUCT.getId()).get());
+    }
+
+    @Test
+    void deleteCheck() throws SQLException {
+        repository.delete(1L);
+        Assertions.assertThrowsExactly(RuntimeException.class, () -> repository.findById(1L));
     }
 
 }

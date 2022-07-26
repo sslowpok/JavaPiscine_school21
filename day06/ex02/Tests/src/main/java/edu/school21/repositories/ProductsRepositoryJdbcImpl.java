@@ -72,7 +72,7 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
 
         Connection connection = ds.getConnection();
 
-        String query = "UPDATE product SET name=?, price=? WHERE id=?";
+        String query = "UPDATE product SET name = ?, price = ? WHERE id = ?;";
 
         PreparedStatement statement = connection.prepareStatement(query);
 
@@ -101,11 +101,6 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
         statement.setDouble(3, product.getPrice());
 
         statement.execute();
-
-//        ResultSet resultSet = statement.getGeneratedKeys();
-//        resultSet.next();
-//
-//        product.setId(resultSet.getLong("id"));
 
         statement.close();
         connection.close();
