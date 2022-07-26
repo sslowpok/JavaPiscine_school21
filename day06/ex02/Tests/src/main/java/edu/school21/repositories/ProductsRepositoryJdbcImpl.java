@@ -92,19 +92,20 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
 
         Connection connection = ds.getConnection();
 
-        String query = "INSERT INTO product (name, price) VALUES (?, ?);";
+        String query = "INSERT INTO product VALUES (?, ?, ?);";
 
-        PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement statement = connection.prepareStatement(query);
 
-        statement.setString(1, product.getName());
-        statement.setDouble(2, product.getPrice());
+        statement.setLong(1, product.getId());
+        statement.setString(2, product.getName());
+        statement.setDouble(3, product.getPrice());
 
         statement.execute();
 
-        ResultSet resultSet = statement.getGeneratedKeys();
-        resultSet.next();
-
-        product.setId(resultSet.getLong("id"));
+//        ResultSet resultSet = statement.getGeneratedKeys();
+//        resultSet.next();
+//
+//        product.setId(resultSet.getLong("id"));
 
         statement.close();
         connection.close();
