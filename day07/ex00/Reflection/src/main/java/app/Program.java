@@ -3,27 +3,40 @@ package app;
 import classes.Car;
 import classes.User;
 
-import java.lang.reflect.Field;
+
 
 public class Program {
 
 	public static void main(String[] args) {
 
-		User user = new User();
-		String name = null;
+		ReflectionClasses reflectionClasses = new ReflectionClasses();
 
-		try {
+//		try {
+//
+//			Field field = user.getClass().getDeclaredField("firstName");
+//			field.setAccessible(true);
+//			name = (String) field.get(user);
+//
+//		} catch (NoSuchFieldException | IllegalAccessException e) {
+//			e.printStackTrace();
+//
+//		}
 
-			Field field = user.getClass().getDeclaredField("firstName");
-			field.setAccessible(true);
-			name = (String) field.get(user);
 
-		} catch (NoSuchFieldException | IllegalAccessException e) {
-			e.printStackTrace();
 
-		}
+//		Provide info about classes in classes package
 
-		System.out.println(name);
+		reflectionClasses.showClasses();
+		System.out.println("---------------------");
+
+//		Enable user to create objects of a specified class with specific field values
+
+//		Display info about created class object
+
+//		Call class methods
+
+
+
 
 	}
 }
