@@ -4,11 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="preProcessor" class="preprocessor.PreProcessorToUpperImpl"/>
-    <bean id="rendererErr" class="renderer.RendererErrImpl">
-        <constructor-arg name="preProcessor" ref="preProcessor"/>
+
+    <bean id="renderer" class="renderer.RendererErrImpl" >
+        <constructor-arg ref="preProcessor"/>
     </bean>
-    <bean id="printer" class="printer.PrinterWithPrefixImpl">
-        <constructor-arg name="renderer" ref="rendererErr"/>
+
+    <bean id="printer" class="printer.PrinterWithPrefixImpl" >
+        <constructor-arg ref="renderer"/>
     </bean>
 
 </beans>
