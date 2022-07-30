@@ -13,13 +13,16 @@ public class Main {
 
         System.out.println("JDBC implementation");
         UsersRepositoryJdbcImpl jdbc = applicationContext.getBean("jdbc", UsersRepositoryJdbcImpl.class);
-        System.out.println("find by id:\t" + jdbc.findById(2L));
+        System.out.println("find by id (2L):\t" + jdbc.findById(2L));
         System.out.println("find all:\t" + jdbc.findAll().toString());
-        System.out.println("find by email:\t" + jdbc.findByEmail("bob@icloud.com"));
+        System.out.println("find by email (bob@icloud.com):\t" + jdbc.findByEmail("bob@icloud.com"));
         System.out.println();
 
         System.out.println("JDBC Template implementation");
         UsersRepositoryJdbcTemplateImpl jdbcTemplate = applicationContext.getBean("jdbcTemplate", UsersRepositoryJdbcTemplateImpl.class);
+        System.out.println("find by id (2L):\t" + jdbcTemplate.findById(2L));
+        System.out.println("find all:\t" + jdbcTemplate.findAll());
+        System.out.println("find by email (bob@icloud.com):\t" + jdbcTemplate.findByEmail("bob@icloud.com"));
 
     }
 
